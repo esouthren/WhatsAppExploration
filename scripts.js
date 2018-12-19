@@ -36,6 +36,7 @@ function readFile(file) {
       console.log(textFromFileLoaded.slice(0,1000));
   };
   fileReader.readAsText(file, "UTF-8");
+  displayResults();
 }
 
 function displayNoFileSelectedWarning() {
@@ -50,5 +51,14 @@ function displayWrongExtensionError() {
 
 function clearWarnings() {
     $("#warning").html("");
+}
+
+function displayResults() {
+    str = '<center>' +
+                '<h1>Analysis</h1>';
+    $("#main").html(str)
+    plotNumberOfMessagesPerUser();
+    plotTestPlot();
+    
 }
 
