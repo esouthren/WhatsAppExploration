@@ -33,10 +33,11 @@ function readFile(file) {
     var fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent) {
       var textFromFileLoaded = fileLoadedEvent.target.result;
-      console.log(textFromFileLoaded.slice(0,1000));
+      //console.log(textFromFileLoaded.slice(0,1000));
+      var userData = processData(textFromFileLoaded);
+        displayResults();
   };
   fileReader.readAsText(file, "UTF-8");
-  displayResults();
 }
 
 function displayNoFileSelectedWarning() {
