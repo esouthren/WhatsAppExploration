@@ -8,8 +8,8 @@ class User {
     
   }
 
-    addMessage(date, time, context) {
-        this.messages.push(new Message(date, time, context));
+    addMessage(message) {
+        this.messages.push(message);
     }
   // methods
 

@@ -33,37 +33,25 @@ function processData(rawData) {
         var senderAndMessage = m.slice(20,);
         senderAndMessage = senderAndMessage.split(': ');
         var messageSender = senderAndMessage[0];
-        console.log(messageSender);
         
         var messageContent = senderAndMessage[1];
         let message = new Message(messageDate, messageContent);
         
         if(messageSender===a.name) {
                 a.addMessage(message);
-                console.log("Adding message to A " + a.name + messageSender);
             }
             if(messageSender===b.name) {
                 b.addMessage(message);
-                console.log("Adding message to B " + b.name + messageSender);
-
             } else {
-        if(a.name==null) { 
-            a.name = messageSender;
-            console.log("setting user A to " + messageSender);
-            console.log("Adding initial message to A " + a.name + messageSender);
-
-            a.addMessage(message);
-        } else if ((b.name==null) && (messageSender != a.name)) { 
-            b.name = messageSender; 
-            console.log("setting user B to " + messageSender);
-            console.log("Adding initial message to B " + b.name + messageSender);
-
-            b.addMessage(message);
-        } 
+                if(a.name==null) { 
+                    a.name = messageSender;
+                    a.addMessage(message);
+                } else if ((b.name==null) && (messageSender != a.name)) { 
+                    b.name = messageSender; 
+                    b.addMessage(message);
+                } 
             }
-
         ab.addMessage(message);
-        console.log("");
     });
     
     

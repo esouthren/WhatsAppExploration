@@ -10,6 +10,7 @@ html, body {
     font-family: 'Montserrat';
     background-color: limegreen;
     font-size: 90%;
+    text-align: center;
 }
 
 #main {

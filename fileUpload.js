@@ -35,7 +35,7 @@ function readFile(file) {
       var textFromFileLoaded = fileLoadedEvent.target.result;
       //console.log(textFromFileLoaded.slice(0,1000));
       var userData = processData(textFromFileLoaded);
-        displayResults();
+        displayResults(userData);
   };
   fileReader.readAsText(file, "UTF-8");
 }
@@ -54,12 +54,15 @@ function clearWarnings() {
     $("#warning").html("");
 }
 
-function displayResults() {
+function displayResults(userData) {
     str = '<center>' +
                 '<h1>Analysis</h1>';
-    $("#main").html(str)
-    plotNumberOfMessagesPerUser();
-    plotTestPlot();
+    $("#main").html(str);
+    
+    
+    displayTextResults(userData); // plots.js
+    displayGraphs(userData); // plots.js
+
     
 }
 

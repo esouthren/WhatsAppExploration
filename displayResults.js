@@ -1,4 +1,20 @@
-function plotTestPlot() {
+function displayTextResults(userData) {
+    displayFirstMessage(userData);
+}
+
+function displayFirstMessage(userData) {
+    str = "<h2>No time like the first time</h2>";
+    str += "<b>" + userData.a.name + "\: </b><i> " + userData.a.messages[0].content + "</i><br />";
+    str += "<b>" + userData.b.name + "\: </b><i> " + userData.b.messages[0].content + "</i>";
+    appendTextToResults(str);
+}
+
+function displayGraphs(userData) {
+    plotNumberOfMessagesPerUser(userData);
+    plotTestPlot(userData);
+}
+
+function plotTestPlot(userData) {
     var trace1 = {
           x: [1, 2, 3, 4],
           y: [10, 15, 13, 17],
@@ -22,7 +38,7 @@ function plotTestPlot() {
 
 }
 
-function plotNumberOfMessagesPerUser() {
+function plotNumberOfMessagesPerUser(userData) {
     var trace1 = {
     x:['trees', 'flowers', 'hedges'],
     y: [90, 130, 40],
@@ -44,4 +60,10 @@ function appendPlotToResults(divName, data, layoutOptions) {
     str += '<div id="' + divName + '"></div>'
     $("#main").html(str);
     Plotly.newPlot(divName, data, layoutOptions);
+}
+
+function appendTextToResults(newStr) {
+    str = $("#main").html();
+    str += newStr;
+    $("#main").html(str);
 }
