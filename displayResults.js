@@ -1,10 +1,14 @@
 function displayResults(userData) {
+    str = '<center>' +
+                '<h1>What\'s in a Conversation?</h1><br /><br />';
+    $("#main").html(str);
 
     displayFirstMessage(userData);
     displayLastMessage(userData);
     displayMessagingDuration(userData);
     displayMessageCount(userData);
     plotMessageCount(userData);
+    displayAveragePerDay(userData);
 
 }
 
@@ -24,36 +28,54 @@ function displayFirstMessage(userData) {
 
 function displayLastMessage(userData) {
     str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>... or the last</div>" +
-                "<div class='resultContent'>" +
-                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
-                    "<i> " + userData.a.messages[userData.a.messages.length-1].content + "</i>" +
-                    "<br /><br />" +
-                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
-                    "<i> " + userData.b.messages[userData.b.messages.length-1].content + "</i>" +
-                "</div>" +
-            "</div><br /><br /></center>";
+            "<div class='resultTitle'>... or the last</div>" +
+            "<div class='resultContent'>" +
+                "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                "<i> " + userData.a.messages[userData.a.messages.length-1].content + "</i>" +
+                "<br /><br />" +
+                "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                "<i> " + userData.b.messages[userData.b.messages.length-1].content + "</i>" +
+            "</div>" +
+        "</div><br /><br /></center>";
     appendTextToResults(str);
 }
 
 function displayMessageCount(userData) {
+    str = "<center><div class='resultEntry'>" +
+            "<div class='resultTitle'>Together, you've written</div>" +
+            "<div class='resultContent'>" +
+                "<b><div class='userBLarge'>" + userData.ab.messages.length + " messages</div></b>" +
+            "</div>" +
+        "</div><br /><br /></center>";
+    appendTextToResults(str);
+}
+
+function displayAveragePerDay(userData) {
+    var avg = userData.ab.messages.length / getDaysDuration(userData);
+    avg = Math.round(avg);
+    
         str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>Together, you've written</div>" +
+                "<div class='resultTitle'>That\'s an average of</div>" +
                 "<div class='resultContent'>" +
-                    "<b><div class='userBLarge'>" + userData.ab.messages.length + " messages</div></b>" +
+                    "<b><div class='userALarge'>" + avg + " messages per day</div></b>" +
                 "</div>" +
             "</div><br /><br /></center>";
     appendTextToResults(str);
 }
 
-function displayMessagingDuration(userData) {
+function getDaysDuration(userData) {
     var oneDay = 24*60*60*1000;
     firstDate = userData.ab.messages[userData.ab.messages.length-1].date;
     secondDate = userData.ab.messages[0].date;
-    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+    
+    return Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+}
+
+function displayMessagingDuration(userData) {
+    
     str = "<center><div class='resultEntry'>" +
                 "<div class='resultTitle'>You've been messaging for</div>" +
-                "<div class='resultContentLarge'>" + diffDays.toString() + " days</div>" +
+                "<div class='resultContentLarge'>" + getDaysDuration(userData).toString() + " days</div>" +
         "</div></center><br /><br />"
     appendTextToResults(str);
 }

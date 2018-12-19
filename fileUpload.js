@@ -35,7 +35,8 @@ function readFile(file) {
       var textFromFileLoaded = fileLoadedEvent.target.result;
       //console.log(textFromFileLoaded.slice(0,1000));
       var userData = processData(textFromFileLoaded);
-        displayResults(userData);
+        $("#main").html("");
+        displayResults(userData); // displayResults.js
   };
   fileReader.readAsText(file, "UTF-8");
 }
@@ -54,15 +55,4 @@ function clearWarnings() {
     $("#warning").html("");
 }
 
-function displayResults(userData) {
-    str = '<center>' +
-                '<h1>What\'s in a Conversation?</h1><br /><br />';
-    $("#main").html(str);
-    
-    
-    displayResults(userData); // plots.js
-    //displayGraphs(userData); // plots.js
-
-    
-}
 
