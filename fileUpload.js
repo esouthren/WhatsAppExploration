@@ -56,7 +56,7 @@ function clearWarnings() {
 
 function displayResults(userData) {
     str = '<center>' +
-                '<h1>Analysis</h1>';
+                '<h1>What\'s in a Conversation?</h1><br /><br />';
     $("#main").html(str);
     
     

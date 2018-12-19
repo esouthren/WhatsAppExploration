@@ -2,7 +2,6 @@ class User {
 
   constructor() {
     this.name = null;
-    this.numberOfMessages = null;
     this.messages = [];
     this.messagingDuration = null;
     

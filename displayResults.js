@@ -1,13 +1,51 @@
 function displayTextResults(userData) {
+
     displayFirstMessage(userData);
+    displayLastMessage(userData);
+    displayMessagingDuration(userData);
+
 }
 
 function displayFirstMessage(userData) {
-    str = "<h2>No time like the first time</h2>";
-    str += "<b>" + userData.a.name + "\: </b><i> " + userData.a.messages[0].content + "</i><br />";
-    str += "<b>" + userData.b.name + "\: </b><i> " + userData.b.messages[0].content + "</i>";
+    str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>No message like the first...</div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                    "<i> " + userData.a.messages[0].content + "</i>" +
+                    "<br /><br />" +
+                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                    "<i> " + userData.b.messages[0].content + "</i>" +
+                "</div>" +
+            "</div><br /><br /></center>";
     appendTextToResults(str);
 }
+
+function displayLastMessage(userData) {
+    str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>... or the Last</div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                    "<i> " + userData.a.messages[userData.a.messages.length-1].content + "</i>" +
+                    "<br /><br />" +
+                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                    "<i> " + userData.b.messages[userData.b.messages.length-1].content + "</i>" +
+                "</div>" +
+            "</div><br /><br /></center>";
+    appendTextToResults(str);
+}
+
+function displayMessagingDuration(userData) {
+    var oneDay = 24*60*60*1000;
+    firstDate = userData.ab.messages[userData.ab.messages.length-1].date;
+    secondDate = userData.ab.messages[0].date;
+    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+    str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>You've been messaging for</div>" +
+                "<div class='resultContentLarge'>" + diffDays.toString() + " days</div>" +
+        "</div></center>"
+    appendTextToResults(str);
+}
+
 
 function displayGraphs(userData) {
     plotNumberOfMessagesPerUser(userData);
