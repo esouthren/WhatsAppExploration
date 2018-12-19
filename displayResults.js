@@ -9,6 +9,10 @@ function displayResults(userData) {
     displayMessageCount(userData);
     plotMessageCount(userData);
     displayAveragePerDay(userData);
+    displayAverageMessageLength(userData);
+    
+    // most common words
+    // average message length
 
 }
 
@@ -80,10 +84,22 @@ function displayMessagingDuration(userData) {
     appendTextToResults(str);
 }
 
-
-function displayGraphs(userData) {
-    plotNumberOfMessagesPerUser(userData);
-    plotTestPlot(userData);
+function displayAverageMessageLength(userData) {
+    var shortUser = userData.a.name;
+    if(userData.a.getAverageMessageLength() > userData.b.getAverageMessageLength()) {
+        shortUser = userData.b.name;
+    }
+    str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>"+ shortUser + " sends shorter messages</div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                    "<i> " + userData.a.getAverageMessageLength().toString() + " words per message</i>" +
+                    "<br /><br />" +
+                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                    "<i> " + userData.b.getAverageMessageLength().toString() + " words per messages</i>" +
+                "</div>" +
+            "</div><br /><br /></center>";
+    appendTextToResults(str);
 }
 
 function plotTestPlot(userData) {

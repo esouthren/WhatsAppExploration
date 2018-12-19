@@ -3,7 +3,6 @@ class User {
   constructor() {
     this.name = null;
     this.messages = [];
-    this.messagingDuration = null;
     
   }
 
@@ -12,12 +11,17 @@ class User {
     }
   // methods
 
-    getDurationOfMessaging() {
-        var first = this.messages[0];
-        var last = this.messages[messages.length-1];
-        
-        this.messagingDuration = last - first; 
-    }
+    
+    getAverageMessageLength() {
+        var numberOfWords = 0;
+            this.messages.forEach( function(m) {
+                var wordSplit = m.content.split(' ');
+                numberOfWords += wordSplit.length;
+            });
+            var avg = numberOfWords / this.messages.length;
+    return Math.round( avg * 10 ) / 10;
+                                                            
+}
 }
 
 class Message {
