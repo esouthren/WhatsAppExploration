@@ -1,0 +1,36 @@
+/* 
+   . = class
+   # = id 
+*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    background-color: limegreen;
+    font-size: 90%;
+}
+
+#main {
+    background-color: white;
+    width: 80%;
+    height: 50%;
+    margin: 0px auto;
+    border-radius: 5px;
+    padding: 3em;  
+}
+
+.uploadButton {
+    border-radius: 3px;
+    padding: 0.5em;
+    font-family: 'Montserrat';
+    font-size: 120%;
+    box-shadow: none;
+    background-color: lightgreen;
+}
+
+#warning {
+    color: red;
+}
+
