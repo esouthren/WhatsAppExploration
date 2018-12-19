@@ -10,9 +10,15 @@ function displayResults(userData) {
     plotMessageCount(userData);
     displayAveragePerDay(userData);
     displayAverageMessageLength(userData);
+    plotMessageTimeOfDay(userData);
+
     
     // most common words
-    // average message length
+    // number of words as a relation to works of literature (e.g your messages equal 1984!)
+    // most use of emojis
+    // who swears the most
+    // messages by time of day
+    // messages per day over time
 
 }
 
@@ -96,32 +102,42 @@ function displayAverageMessageLength(userData) {
                     "<i> " + userData.a.getAverageMessageLength().toString() + " words per message</i>" +
                     "<br /><br />" +
                     "<b><div class='userB'>" + userData.b.name + "</div></b>" +
-                    "<i> " + userData.b.getAverageMessageLength().toString() + " words per messages</i>" +
+                    "<i> " + userData.b.getAverageMessageLength().toString() + " words per message</i>" +
                 "</div>" +
             "</div><br /><br /></center>";
     appendTextToResults(str);
 }
 
-function plotTestPlot(userData) {
+
+function plotMessageTimeOfDay(userData) {
+    hours = [00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
     var trace1 = {
-          x: [1, 2, 3, 4],
-          y: [10, 15, 13, 17],
-          type: 'scatter',
-        };
+        y: userData.a.getMessagesByHour(),
+        x: hours,
+        type: 'scatter',
+        name: userData.a.name,
+    };
 
     var trace2 = {
-      x: [1, 2, 3, 4],
-      y: [16, 5, 11, 9],
-      type: 'scatter'
+      y: userData.b.getMessagesByHour(),
+      x: hours,
+      type: 'scatter',
+        name: userData.b.name,
     };
 
     var data = [trace1, trace2];
     var layout = {
-    title: 'Test Scatter Plot!'
-    
+        xaxis: {
+            type: 'category',
+            title: 'Time by Hour'
+        },
+        yaxis: {
+            title: 'Number of Messages'
+        },
+        title: 'Messages By Hour',
     };
-    var newDiv = 'test';
-    appendPlotToResults(newDiv, data, layout);
+    var newDiv = 'plotMessagesByHour';
+    appendPlotToResults(newDiv, data, layout, 90);
     //Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
 
 }
@@ -143,13 +159,13 @@ function plotMessageCount(userData) {
         title: 'Messages Sent',
         showlegend: false
     };
-    appendPlotToResults('plotNumMessages', data, layout);
+    appendPlotToResults('plotNumMessages', data, layout, 60);
 //Plotly.newPlot('test', data, layout, {displaylogo: false});
 }
 
-function appendPlotToResults(divName, data, layoutOptions) {
+function appendPlotToResults(divName, data, layoutOptions, width) {
     str = $("#main").html();
-    str += '<div id="' + divName + '" style="width: 60%; margin: 0px auto"></div>'
+    str += '<div id="' + divName + '" style="width: ' + width + '%; margin: 0px auto"></div>'
     $("#main").html(str);
     Plotly.newPlot(divName, data, layoutOptions);
 }
