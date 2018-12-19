@@ -1,8 +1,10 @@
-function displayTextResults(userData) {
+function displayResults(userData) {
 
     displayFirstMessage(userData);
     displayLastMessage(userData);
     displayMessagingDuration(userData);
+    displayMessageCount(userData);
+    plotMessageCount(userData);
 
 }
 
@@ -22,13 +24,23 @@ function displayFirstMessage(userData) {
 
 function displayLastMessage(userData) {
     str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>... or the Last</div>" +
+                "<div class='resultTitle'>... or the last</div>" +
                 "<div class='resultContent'>" +
                     "<b><div class='userA'>" + userData.a.name + "</div></b>" +
                     "<i> " + userData.a.messages[userData.a.messages.length-1].content + "</i>" +
                     "<br /><br />" +
                     "<b><div class='userB'>" + userData.b.name + "</div></b>" +
                     "<i> " + userData.b.messages[userData.b.messages.length-1].content + "</i>" +
+                "</div>" +
+            "</div><br /><br /></center>";
+    appendTextToResults(str);
+}
+
+function displayMessageCount(userData) {
+        str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>Together, you've written</div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userBLarge'>" + userData.ab.messages.length + " messages</div></b>" +
                 "</div>" +
             "</div><br /><br /></center>";
     appendTextToResults(str);
@@ -42,7 +54,7 @@ function displayMessagingDuration(userData) {
     str = "<center><div class='resultEntry'>" +
                 "<div class='resultTitle'>You've been messaging for</div>" +
                 "<div class='resultContentLarge'>" + diffDays.toString() + " days</div>" +
-        "</div></center>"
+        "</div></center><br /><br />"
     appendTextToResults(str);
 }
 
@@ -76,26 +88,30 @@ function plotTestPlot(userData) {
 
 }
 
-function plotNumberOfMessagesPerUser(userData) {
+function plotMessageCount(userData) {
+    
     var trace1 = {
-    x:['trees', 'flowers', 'hedges'],
-    y: [90, 130, 40],
-    type: 'bar'
+    x:[userData.a.name, userData.b.name],
+    y: [userData.a.messages.length, userData.b.messages.length],
+    type: 'bar',
+    marker:{
+        color: ['rgba(255,69,0,1)', 'rgba(0, 90, 156,1)']
+    }
 };
 
-var data = [trace1];
+    var data = [trace1];
 
-var layout = {
-    title: 'Hide the Plotly Logo on the Modebar',
-    showlegend: false
-};
+    var layout = {
+        title: 'Messages Sent',
+        showlegend: false
+    };
     appendPlotToResults('plotNumMessages', data, layout);
 //Plotly.newPlot('test', data, layout, {displaylogo: false});
 }
 
 function appendPlotToResults(divName, data, layoutOptions) {
     str = $("#main").html();
-    str += '<div id="' + divName + '"></div>'
+    str += '<div id="' + divName + '" style="width: 60%; margin: 0px auto"></div>'
     $("#main").html(str);
     Plotly.newPlot(divName, data, layoutOptions);
 }

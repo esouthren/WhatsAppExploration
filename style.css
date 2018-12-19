@@ -21,6 +21,18 @@ html, body {
     color: dodgerblue;
 }
 
+.userBLarge {
+    color: dodgerblue;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.userALarge {
+    color: orangered;
+    font-weight: bold;
+    font-size: 150%;
+}
+
 #main {
     background-color: white;
     width: 80%;

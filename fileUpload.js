@@ -60,8 +60,8 @@ function displayResults(userData) {
     $("#main").html(str);
     
     
-    displayTextResults(userData); // plots.js
-    displayGraphs(userData); // plots.js
+    displayResults(userData); // plots.js
+    //displayGraphs(userData); // plots.js
 
     
 }
