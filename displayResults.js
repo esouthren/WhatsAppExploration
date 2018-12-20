@@ -16,6 +16,7 @@ function displayResults(userData) {
     displayBusiestHour(userData);
     plotMessageTimeOfDay(userData);
     displayNumberOfQuestions(userData);
+    displayMostCommonWords(userData);
 
     
     // most common words
@@ -24,8 +25,6 @@ function displayResults(userData) {
     // who swears the most
     // messages by time of day
     // messages per day over time
-    // who asks the most questions
-
 }
 
 function displayFirstMessage(userData) {
@@ -173,6 +172,33 @@ function displayNumberOfQuestions(userData) {
             "</div><br /><br /></center>";
     appendTextToResults(str);
 }
+
+function displayMostCommonWords(userData) {
+    var wordMinLength = 9;
+    var aWordDict = userData.a.getTopWordsOrderedArray(wordMinLength).slice(0,10);
+    var bWordDict = userData.b.getTopWordsOrderedArray(wordMinLength).slice(0,10);
+    var aCommonWords = "";  
+    var bCommonWords = "";
+    
+    for(var i = 0; i < 10; i++) {
+        aCommonWords += "<b>" + aWordDict[i][0] + ":</b> " + aWordDict[i][1] + " uses<br />";
+        bCommonWords += "<b>" + bWordDict[i][0] + ":</b> " + bWordDict[i][1] + " uses<br />";
+    }
+
+    
+    str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>Your most common large words are </div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                    "<i> " + aCommonWords + "</i>" +
+                    "<br /><br />" +
+                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                    "<i> " +bCommonWords + "</i>" +
+                "</div>" +
+            "</div><br /><br /></center>";
+    appendTextToResults(str);
+}
+
 function plotMessageTimeOfDay(userData) {
     hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var trace1 = {
