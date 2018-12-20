@@ -69,7 +69,7 @@ function displayAveragePerDay(userData) {
         str = "<div class='resultTitle'>That\'s an average of</div>" +
                 "<div class='resultContent'>" +
                     "<b><div class='userALarge'>" + avg + " messages per day</div></b>" +
-                "</div>" +
+                "</div>";
     appendTextToResults(str);
 }
 

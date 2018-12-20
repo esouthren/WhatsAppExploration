@@ -7,7 +7,7 @@ function loadHomepage() {
         "Email the chat file to yourself"
     ];
     
-    var pageHtmlString = "<div class='fileUploadWrapper'>" +
+    var pageHtmlString = "<h1>WhatsApp Chat Investigator</h1><br /><div class='fileUploadWrapper'>" +
         "<button class='uploadButton'>Upload a .txt File</button>" +     
         "<input type='file' id='fileToLoad' onchange='checkFileExtension()' />" +  
     "</div>" +
