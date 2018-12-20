@@ -193,7 +193,15 @@ h2 {
 .largeGraph {
     width: 100%;
 }
-
+/* CSS for tablets */
+ @media only screen and (min-width: 500px) {
+     .largeGraph {
+         width: 80%;
+     }
+     .smallGraph {
+         width: 50%;
+     }
+}
 /* CSS for laptop screens */
 
     @media only screen and (min-width: 500px) {
