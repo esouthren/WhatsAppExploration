@@ -1,10 +1,12 @@
+/* CSS for Mobile */
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Montserrat';
     background-color: white;
-    font-size: 1.15em;
+    font-size: 1em;
     text-align: center;
 }
 
@@ -50,15 +52,16 @@ h2 {
 }
 
 .instructionImg {
-    width: 60%;    
+    width: 100%;  
+    
+    padding-top: 0.5em;
 }
 
 #main {
-    background-color: white;
-    width: 80%; 
+    background-color: white;  
     margin: 0px auto;
-    border-radius: 5px;
-    padding: 3em;  
+    padding: 0.5em;
+    
 }
 
 .uploadButton {
@@ -75,7 +78,7 @@ h2 {
 
 .analyseButton {
     border-radius: 0.5em;
-    width: 25%;
+    width: 80%;
     padding: 0.5em;
     border 0px;
     font-family: 'Montserrat';
@@ -106,54 +109,48 @@ h2 {
 }
 
 .resultEntry {
-    display: table-row;
-    width: 70%;
+    width: 100%;
     margin-bottom: 5em;
     margin: 0px auto;
     background-color: white;
 }
 
 .resultTitle {
-    text-align: right;
     font-weight: bold;
     font-size: 150%;
-    display: table-cell;
-    padding-right: 2em;
-    padding-top: .5em;
-    width: 25%;
+    padding-bottom: 1em;
+    width: 100%;
+    margin: 0px auto;
+
+   
 }
 
 .resultTitleInstruction {
-    text-align: right;
     font-weight: bold;
     font-size: 150%;
     display: table-cell;
-    padding-right: 2em;
     padding-top: .5em;
-    width: 25%;
+    width: 100%;
     vertical-align: top;
 }
 
 .resultContent {
-    text-align: left;
-    display: table-cell;
-    width: 25%;
+    width: 100%;
+    margin: 0px auto;
 }
 
 .resultContentInstruction {
     text-align: left;
-    display: table-cell;
-    width: 25%;
+    width: 100%;
     vertical-align: top;
 }
 
 .resultContentLarge {
-    text-align: left;
-    display: table-cell;
     color: orangered;
     font-weight: bold;
     font-size: 150%;
-    width: 25%;
+    width: 100%;
+    margin: 0px auto;
 }
 
 .fileUploadWrapper {
@@ -189,3 +186,217 @@ h2 {
    
 }
 
+.smallGraph {
+    width: 100%;
+}
+
+.largeGraph {
+    width: 100%;
+}
+
+/* CSS for laptop screens */
+
+    @media only screen and (min-width: 500px) {
+        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat';
+        background-color: white;
+        font-size: 1.15em;
+        text-align: center;
+    }
+
+    h3 {
+        color: gray;
+        font-size: 1em;
+        margin: 0;
+        padding: 0;
+        line-height: normal;
+    }
+
+    h2 {
+        color: gray;
+        font-size: 1.2em;
+
+    }
+
+    .titleScreen {
+        height: 100vh;
+        top: 50%;
+        position
+        margin: 0px auto;
+    }
+
+    .userA {
+        color: orangered;
+    }
+
+    .userB { 
+        color: dodgerblue;
+    }
+
+    .userBLarge {
+        color: dodgerblue;
+        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .userALarge {
+        color: orangered;
+        font-weight: bold;
+        font-size: 150%;
+    }
+
+    .instructionImg {
+        width: 60%;    
+    }
+
+    #main {
+        background-color: white;
+        width: 80%; 
+        margin: 0px auto;
+        border-radius: 5px;
+        padding: 3em;  
+    }
+
+    .uploadButton {
+        border-radius: 0.5em;
+        width: 100%;
+        padding: 0.5em;
+        border 0px;
+        font-family: 'Montserrat';
+        font-size: 120%;
+        box-shadow: none;
+        background-color: dodgerblue;
+        margin: 0px auto;
+    }
+
+    .analyseButton {
+        border-radius: 0.5em;
+        width: 25%;
+        padding: 0.5em;
+        border 0px;
+        font-family: 'Montserrat';
+        font-size: 120%;
+        box-shadow: none;
+        background-color: orangered;
+        margin: 0px auto;
+    }
+
+    .uploadButton:hover {
+        cursor: pointer;
+        background-color: steelblue;
+    }
+
+    .analyseButton:hover {
+        cursor: pointer;
+        background-color: orange;
+    }
+
+    #warning {
+        color: red;
+    }
+
+    .resultScrollBox {
+        width:100%;
+        margin: 0px auto;
+
+    }
+
+    .resultEntry {
+        display: table-row;
+        width: 70%;
+        margin-bottom: 5em;
+        margin: 0px auto;
+        background-color: white;
+    }
+
+    .resultTitle {
+        text-align: right;
+        font-weight: bold;
+        font-size: 150%;
+        display: table-cell;
+        padding-right: 2em;
+        padding-top: .5em;
+        width: 25%;
+    }
+
+    .resultTitleInstruction {
+        text-align: right;
+        font-weight: bold;
+        font-size: 150%;
+        display: table-cell;
+        padding-right: 2em;
+        padding-top: .5em;
+        width: 25%;
+        vertical-align: top;
+    }
+
+    .resultContent {
+        text-align: left;
+        display: table-cell;
+        width: 25%;
+    }
+
+    .resultContentInstruction {
+        text-align: left;
+        display: table-cell;
+        width: 25%;
+        vertical-align: top;
+    }
+
+    .resultContentLarge {
+        text-align: left;
+        display: table-cell;
+        color: orangered;
+        font-weight: bold;
+        font-size: 150%;
+        width: 25%;
+    }
+
+    .fileUploadWrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .fileUploadWrapper input[type=file] {
+      font-size: 2em;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    .footer {
+        display: table-row;
+        width: 70%;
+        margin: 0px auto;
+        background-color: white;
+         margin-bottom: 5em;
+    }
+
+    .footer a {
+        color: dodgerblue;
+        text-decoration: none;
+    }
+
+    .footerImg {
+        width: 2%;
+        display: inline;
+
+    }
+
+    .smallGraph {
+        width: 60%;
+        margin: 0px auto;
+    }
+
+    .largeGraph {
+        width: 90%;
+        margin: 0px auto;
+
+    }
+    
+}

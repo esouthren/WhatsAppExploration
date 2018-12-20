@@ -219,7 +219,7 @@ function plotMessageTimeOfDay(userData) {
         title: 'Messages By Hour',
     };
     var newDiv = 'plotMessagesByHour';
-    appendPlotToResults(newDiv, data, layout, 90);
+    appendPlotToResults(newDiv, data, layout, 'largeGraph');
     //Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
 
 }
@@ -244,12 +244,12 @@ function plotMessageCount(userData) {
             title: 'Number of Messages'
         },
     };
-    appendPlotToResults('plotNumMessages', data, layout, 60);
+    appendPlotToResults('plotNumMessages', data, layout, 'smallGraph');
 }
 
-function appendPlotToResults(divName, data, layoutOptions, width) {
+function appendPlotToResults(divName, data, layoutOptions, graphStyle) {
     str = $("#main").html();
-    str += '<div class="resultScrollBox" data-aos="' + ANIMATION_STYLE + '"><div id="' + divName + '" style="width: ' + width + '%; margin: 0px auto"></div></div><br /><br />'
+    str += '<div class="resultScrollBox" data-aos="' + ANIMATION_STYLE + '"><div id="' + divName + '" class="' + graphStyle + '"; margin: 0px auto"></div></div><br /><br />'
     $("#main").html(str);
     Plotly.newPlot(divName, data, layoutOptions);
 }
