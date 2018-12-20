@@ -19,6 +19,7 @@ function displayResults(userData) {
     plotMessageTimeOfDay(userData);
     displayNumberOfQuestions(userData);
     displayMostCommonWords(userData);
+    displayFooter();
 
     
     // most common words
@@ -259,4 +260,12 @@ function appendTextToResults(newStr) {
     str += newStr;
     str += "</div></div><br /><br /><br /><br /><br />";
     $("#main").html(str);
+}
+
+function displayFooter() {
+    str = $("#main").html();
+    str += "<div class='footer'>" + 
+                "<img src='img/github.png' class='footerImg'> Hosted at <a href='https://github.com/esouthren/WhatsAppExploration' >Github</a></div>"
+    $("#main").html(str);
+
 }
