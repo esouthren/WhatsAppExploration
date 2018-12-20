@@ -3,7 +3,7 @@ var COLOR_B_RGB = 'rgba(0, 90, 156,1)';
 
 function displayResults(userData) {
     str = '<center>' +
-                '<h1>What\'s in a Conversation?</h1><br /><br />';
+                '<br /><br /><br /><br /><h1>What\'s in a Conversation?</h1><br /><br /><br /><br />';
     $("#main").html(str);
 
     displayFirstMessage(userData);
@@ -28,40 +28,34 @@ function displayResults(userData) {
 }
 
 function displayFirstMessage(userData) {
-    str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>No message like the first...</div>" +
-                "<div class='resultContent'>" +
-                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
-                    "<i> " + userData.a.messages[0].content + "</i>" +
-                    "<br /><br />" +
-                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
-                    "<i> " + userData.b.messages[0].content + "</i>" +
-                "</div>" +
-            "</div><br /><br /></center>";
+    str = "<div class='resultTitle'>No message like the first...</div>" +
+            "<div class='resultContent'>" +
+                "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                "<i> " + userData.a.messages[0].content + "</i>" +
+                "<br /><br />" +
+                "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                "<i> " + userData.b.messages[0].content + "</i>" +
+            "</div>";
     appendTextToResults(str);
 }
 
 function displayLastMessage(userData) {
-    str = "<center><div class='resultEntry'>" +
-            "<div class='resultTitle'>... or the last</div>" +
+    str = "<div class='resultTitle'>... or the last</div>" +
             "<div class='resultContent'>" +
                 "<b><div class='userA'>" + userData.a.name + "</div></b>" +
                 "<i> " + userData.a.messages[userData.a.messages.length-1].content + "</i>" +
                 "<br /><br />" +
                 "<b><div class='userB'>" + userData.b.name + "</div></b>" +
                 "<i> " + userData.b.messages[userData.b.messages.length-1].content + "</i>" +
-            "</div>" +
-        "</div><br /><br /></center>";
+            "</div>";
     appendTextToResults(str);
 }
 
 function displayMessageCount(userData) {
-    str = "<center><div class='resultEntry'>" +
-            "<div class='resultTitle'>Together, you've written</div>" +
+    str = "<div class='resultTitle'>Together, you've written</div>" +
             "<div class='resultContent'>" +
                 "<b><div class='userBLarge'>" + userData.ab.messages.length + " messages</div></b>" +
-            "</div>" +
-        "</div><br /><br /></center>";
+            "</div>";
     appendTextToResults(str);
 }
 
@@ -69,12 +63,10 @@ function displayAveragePerDay(userData) {
     var avg = userData.ab.messages.length / getDaysDuration(userData);
     avg = Math.round(avg);
     
-        str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>That\'s an average of</div>" +
+        str = "<div class='resultTitle'>That\'s an average of</div>" +
                 "<div class='resultContent'>" +
                     "<b><div class='userALarge'>" + avg + " messages per day</div></b>" +
                 "</div>" +
-            "</div><br /><br /></center>";
     appendTextToResults(str);
 }
 
@@ -88,10 +80,9 @@ function getDaysDuration(userData) {
 
 function displayMessagingDuration(userData) {
     
-    str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>You've been messaging for</div>" +
-                "<div class='resultContentLarge'>" + getDaysDuration(userData).toString() + " days</div>" +
-        "</div></center><br /><br />"
+    str = "<div class='resultTitle'>You've been messaging for</div>" +
+                "<div class='resultContentLarge'>" + getDaysDuration(userData).toString() + " days" +
+            "</div>";
     appendTextToResults(str);
 }
 
@@ -100,16 +91,14 @@ function displayAverageMessageLength(userData) {
     if(userData.a.getAverageMessageLength() > userData.b.getAverageMessageLength()) {
         shortUser = userData.b.name;
     }
-    str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>"+ shortUser + " sends shorter messages</div>" +
-                "<div class='resultContent'>" +
-                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
-                    "<i> " + userData.a.getAverageMessageLength().toString() + " words per message</i>" +
-                    "<br /><br />" +
-                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
-                    "<i> " + userData.b.getAverageMessageLength().toString() + " words per message</i>" +
-                "</div>" +
-            "</div><br /><br /></center>";
+    str = "<div class='resultTitle'>"+ shortUser + " sends shorter messages</div>" +
+            "<div class='resultContent'>" +
+                "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                "<i> " + userData.a.getAverageMessageLength().toString() + " words per message</i>" +
+                "<br /><br />" +
+                "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                "<i> " + userData.b.getAverageMessageLength().toString() + " words per message</i>" +
+            "</div>";
     appendTextToResults(str);
 }
 
@@ -144,12 +133,10 @@ function displayBusiestHour(userData) {
         case 23: output+="11pm and midnight"; break;
         default: output+="...";
     }
-            str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>The busiest time for messaging</div>" +
-                "<div class='resultContent'>" +
+            str = "<div class='resultTitle'>The busiest time for messaging</div>" +
+                    "<div class='resultContent'>" +
                     "<b><div class='userBLarge'>" + output + "</div></b>" +
-                "</div>" +
-            "</div><br /><br /></center>";
+                "</div>";
     appendTextToResults(str);
 }
 
@@ -160,42 +147,39 @@ function displayNumberOfQuestions(userData) {
     if(bNum > aNum) { output = userData.b.name + " asks the most questions"; }
     if(bNum===aNum) { output = "You ask the same number of questions"}
     
-    str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>" + output + "</div>" +
-                "<div class='resultContent'>" +
-                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
-                    "<i> " + aNum + " questions</i>" +
-                    "<br /><br />" +
-                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
-                    "<i> " +bNum + " questions</i>" +
-                "</div>" +
-            "</div><br /><br /></center>";
+    str = "<div class='resultTitle'>" + output + "</div>" +
+            "<div class='resultContent'>" +
+                "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                "<i> " + aNum + " questions</i>" +
+                "<br /><br />" +
+                "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                "<i> " +bNum + " questions</i>" +
+            "</div>";
     appendTextToResults(str);
 }
 
 function displayMostCommonWords(userData) {
     var wordMinLength = 9;
-    var aWordDict = userData.a.getTopWordsOrderedArray(wordMinLength).slice(0,10);
-    var bWordDict = userData.b.getTopWordsOrderedArray(wordMinLength).slice(0,10);
+    var wordsToDisplay = 5;
+    var aWordDict = userData.a.getTopWordsOrderedArray(wordMinLength).slice(0,wordsToDisplay);
+    var bWordDict = userData.b.getTopWordsOrderedArray(wordMinLength).slice(0,wordsToDisplay);
     var aCommonWords = "";  
     var bCommonWords = "";
     
-    for(var i = 0; i < 10; i++) {
+    for(var i = 0; i < wordsToDisplay; i++) {
         aCommonWords += "<b>" + aWordDict[i][0] + ":</b> " + aWordDict[i][1] + " uses<br />";
         bCommonWords += "<b>" + bWordDict[i][0] + ":</b> " + bWordDict[i][1] + " uses<br />";
     }
 
     
-    str = "<center><div class='resultEntry'>" +
-                "<div class='resultTitle'>Your most common large words are </div>" +
-                "<div class='resultContent'>" +
-                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
-                    "<i> " + aCommonWords + "</i>" +
-                    "<br /><br />" +
-                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
-                    "<i> " +bCommonWords + "</i>" +
-                "</div>" +
-            "</div><br /><br /></center>";
+    str = "<div class='resultTitle'>Your most common large words are </div>" +
+            "<div class='resultContent'>" +
+                "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                "<i> " + aCommonWords + "</i>" +
+                "<br /><br />" +
+                "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                "<i> " +bCommonWords + "</i>" +
+            "</div>";
     appendTextToResults(str);
 }
 
@@ -264,13 +248,15 @@ function plotMessageCount(userData) {
 
 function appendPlotToResults(divName, data, layoutOptions, width) {
     str = $("#main").html();
-    str += '<div id="' + divName + '" style="width: ' + width + '%; margin: 0px auto"></div>'
+    str += '<div class="resultScrollBox" data-aos="slide-up"><div id="' + divName + '" style="width: ' + width + '%; margin: 0px auto"></div></div><br /><br />'
     $("#main").html(str);
     Plotly.newPlot(divName, data, layoutOptions);
 }
 
 function appendTextToResults(newStr) {
     str = $("#main").html();
+    str += "<div class='resultScrollBox' data-aos='slide-up'><div class='resultEntry'>";
     str += newStr;
+    str += "</div></div><br /><br /><br /><br /><br />";
     $("#main").html(str);
 }

@@ -12,6 +12,10 @@
         <script src="displayResults.js"></script>
         <script src="User.js"></script>
         <script src="processData.js"></script>
+        
+        <!-- scroll animation library (AOS) -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" type="image/png" href="sun.png">
@@ -27,7 +31,12 @@
             $(document).ready(function() {
                 // Things to do when page loads
                 loadHomepage();
-            });      
+            });
+            
+            // Initialise AOS scrolling 
+            AOS.init({
+              duration: 1100,
+            })
         </script>
     </body>
 </html>
