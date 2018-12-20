@@ -35,6 +35,17 @@ class User {
         });
         return messagesByHour;
     }
+    
+    getBusiestHour() {
+        var messagesByHour = this.getMessagesByHour();
+        var max = 0;
+        for(var i = 0; i < messagesByHour.length; ++i) {
+            if (messagesByHour[i] > max) {
+                max = i;
+            }
+        }
+        return max;
+    }
 }
 
 class Message {

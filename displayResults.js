@@ -10,6 +10,7 @@ function displayResults(userData) {
     plotMessageCount(userData);
     displayAveragePerDay(userData);
     displayAverageMessageLength(userData);
+    displayBusiestHour(userData);
     plotMessageTimeOfDay(userData);
 
     
@@ -19,6 +20,7 @@ function displayResults(userData) {
     // who swears the most
     // messages by time of day
     // messages per day over time
+    // who asks the most questions
 
 }
 
@@ -108,9 +110,49 @@ function displayAverageMessageLength(userData) {
     appendTextToResults(str);
 }
 
+function displayBusiestHour(userData) {
+    var busiestHour = userData.ab.getBusiestHour();
+    console.log(busiestHour.toString());
+    var output = "is between ";
+    switch(busiestHour) {
+        case 0: output+="midnight and 1am"; break;
+        case 1: output+="1am and 2am"; break;
+        case 2: output+="2am and 3am"; break;
+        case 3: output+="3am and 4am"; break;
+        case 4: output+="4am and 5am"; break;
+        case 5: output+="5am and 6am"; break;
+        case 6: output+="6am and 7am"; break;
+        case 7: output+="7am and 8am"; break;
+        case 8: output+="8am and 9am"; break;
+        case 9: output+="9am and 10am"; break;
+        case 10: output+="10am and 11am"; break;
+        case 11: output+="11am and midday"; break;
+        case 12: output+="midday and 1pm"; break;
+        case 13: output+="1pm and 2pm"; break;
+        case 14: output+="2pm and 3pm"; break;
+        case 15: output+="3pm and 4pm"; break;
+        case 16: output+="4pm and 5pm"; break;
+        case 17: output+="5pm and 6pm"; break;
+        case 18: output+="6pm and 7pm"; break;
+        case 19: output+="7pm and 8pm"; break;
+        case 20: output+="8pm and 9pm"; break;
+        case 21: output+="9pm and 10pm"; break;
+        case 22: output+="10pm and 11pm"; break;
+        case 23: output+="11pm and midnight"; break;
+        default: output+="...";
+    }
+            str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>The busiest time for messaging</div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userBLarge'>" + output + "</div></b>" +
+                "</div>" +
+            "</div><br /><br /></center>";
+    appendTextToResults(str);
+}
+
 
 function plotMessageTimeOfDay(userData) {
-    hours = [00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+    hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var trace1 = {
         y: userData.a.getMessagesByHour(),
         x: hours,
@@ -157,7 +199,10 @@ function plotMessageCount(userData) {
 
     var layout = {
         title: 'Messages Sent',
-        showlegend: false
+        showlegend: false,
+        yaxis: {
+            title: 'Number of Messages'
+        },
     };
     appendPlotToResults('plotNumMessages', data, layout, 60);
 //Plotly.newPlot('test', data, layout, {displaylogo: false});
