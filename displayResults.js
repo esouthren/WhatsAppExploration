@@ -3,7 +3,7 @@ var COLOR_B_RGB = 'rgba(0, 90, 156,1)';
 var ANIMATION_STYLE = 'fade-up'; // css-tricks.com/aos-css-driven-scroll-animation-library/ 
 
 function displayResults(userData) {
-    str = "<div class='titleScreen'><br /><br /><br /><h1>What\'s in a Conversation?</h1>" +
+    str = "<div class='titleScreen'><br /><br /><br /><br /><br /><h1>What\'s in a Conversation?</h1>" +
                 "<br /><br /><h3>scroll to continue</h3>" +
         "</div>";
     $("#main").html(str);

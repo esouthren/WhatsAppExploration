@@ -1,19 +1,36 @@
 function loadHomepage() {
-    console.log("loading...");
-    var pageHtmlString = '<center>' +
-    '<tr>' +
-    '<td>Select a File to Load: </td>' +
-    '<td><input type="file" text="blah" id="fileToLoad" onchange="checkFileExtension()" ></td>' + 
-    '<br /><br /><td><button onclick="validateFileInput()" class="uploadButton">Let\'s Analyse!</button><td>' +
-    '</tr>' +
-    '<div id="warning"></div>';
-    $("#main").html(pageHtmlString);
+
+    var instructions = [
+        "Open the WhatsApp conversation you'd like to examine and click the 3-dot menu icon", "Select 'More'", 
+        "Select 'Export chat'", 
+        "Choose 'Without Media'", 
+        "Email the chat file to yourself"
+    ];
+    
+    var pageHtmlString = "Select a File to Load: " +
+    "<input type='file' text='blah' id='fileToLoad' onchange='checkFileExtension()'>" + 
+    "<br /><br />" + 
+    "<div onclick='validateFileInput()' class='uploadButton'>Let\'s Analyse!</div>" +
+    "<div id='warning'></div>" +
+    "<br /><br /><h2>How do I get a chat file?</h2><br /><br />";
+    
+    for(var i = 0; i < instructions.length; ++i) {
+        pageHtmlString += "<div class='resultScrollBox' data-aos='fade-up'>" +
+        "<div class='resultEntry'>" +
+            "<div class='resultTitleInstruction'><h3>" + instructions[i] +
+            "</h3></div>" +
+            "<div class='resultContentInstruction'>" +
+                "<div class='userBLarge'><img src='img/" + (i+1).toString() + ".png' alt='" + instructions[i] + "' class='instructionImg' /></div>" +
+            "</div>" + 
+        "</div></div><br /><br /><br />";
+    }
+    $('#main').html(pageHtmlString);
 }
 
 function validateFileInput() {
-  var fileToLoad = document.getElementById("fileToLoad").files[0];
+  var fileToLoad = document.getElementById('fileToLoad').files[0];
   if(typeof fileToLoad == 'undefined') {
-      console.log("Select a .txt file to analyse!");
+      console.log('Select a .txt file to analyse!');
       displayNoFileSelectedWarning();
   } else {
       readFile(fileToLoad);
@@ -22,7 +39,7 @@ function validateFileInput() {
 }
 
 function checkFileExtension() {
-  var file = document.querySelector("#fileToLoad");
+  var file = document.querySelector('#fileToLoad');
   if ( /\.(txt)$/i.test(file.files[0].name) === false ) { 
       displayWrongExtensionError(); 
   }
@@ -35,24 +52,24 @@ function readFile(file) {
       var textFromFileLoaded = fileLoadedEvent.target.result;
       //console.log(textFromFileLoaded.slice(0,1000));
       var userData = processData(textFromFileLoaded);
-        $("#main").html("");
+        $('#main').html('');
         displayResults(userData); // displayResults.js
   };
-  fileReader.readAsText(file, "UTF-8");
+  fileReader.readAsText(file, 'UTF-8');
 }
 
 function displayNoFileSelectedWarning() {
-    var str = '<p class="warning">Please select a file to upload!</p>'
-    $("#warning").html(str);
+    var str = "<p class='warning'>Please select a file to upload!</p>"
+    $('#warning').html(str);
 }
 
 function displayWrongExtensionError() {
-    var str = '<p class="warning">Wrong file type: must be a .txt file</p>'
-    $("#warning").html(str);
+    var str = "<p class='warning'>Wrong file type: must be a .txt file</p>"
+    $('#warning').html(str);
 }
 
 function clearWarnings() {
-    $("#warning").html("");
+    $('#warning').html('');
 }
 
 

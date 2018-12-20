@@ -15,6 +15,15 @@ html, body {
 
 h3 {
     color: gray;
+    font-size: 90%;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+
+h2 {
+    color: gray;
+
 }
 
 .titleScreen {
@@ -44,22 +53,33 @@ h3 {
     font-size: 150%;
 }
 
+.instructionImg {
+    width: 60%;    
+}
+
 #main {
     background-color: white;
-    width: 80%;
-    
+    width: 80%; 
     margin: 0px auto;
     border-radius: 5px;
     padding: 3em;  
 }
 
 .uploadButton {
-    border-radius: 3px;
-    padding: 0.5em;
+    border-radius: 0.5em;
+    width: 25%;
+    padding: 1em;
+    border 0px;
     font-family: 'Montserrat';
     font-size: 120%;
     box-shadow: none;
-    background-color: lightgreen;
+    background-color: dodgerblue;
+    margin: 0px auto;
+}
+
+.uploadButton:hover {
+    cursor: pointer;
+    background-color: steelblue;
 }
 
 #warning {
@@ -76,6 +96,8 @@ h3 {
     display: table-row;
     width: 70%;
     margin-bottom: 5em;
+    margin: 0px auto;
+    background-color: white;
     
     
 }
@@ -90,10 +112,28 @@ h3 {
     width: 25%;
 }
 
+.resultTitleInstruction {
+    text-align: right;
+    font-weight: bold;
+    font-size: 150%;
+    display: table-cell;
+    padding-right: 2em;
+    padding-top: .5em;
+    width: 25%;
+    vertical-align: top;
+}
+
 .resultContent {
     text-align: left;
     display: table-cell;
     width: 25%;
+}
+
+.resultContentInstruction {
+    text-align: left;
+    display: table-cell;
+    width: 25%;
+    vertical-align: top;
 }
 
 .resultContentLarge {
