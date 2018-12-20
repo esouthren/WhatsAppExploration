@@ -1,8 +1,3 @@
-/* 
-   . = class
-   # = id 
-*/
-
 html, body {
     height: 100%;
     margin: 0;
@@ -180,6 +175,7 @@ h2 {
     width: 70%;
     margin: 0px auto;
     background-color: white;
+     margin-bottom: 5em;
 }
 
 .footer a {
@@ -190,5 +186,6 @@ h2 {
 .footerImg {
     width: 2%;
     display: inline;
+   
 }
 

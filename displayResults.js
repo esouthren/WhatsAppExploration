@@ -264,8 +264,14 @@ function appendTextToResults(newStr) {
 
 function displayFooter() {
     str = $("#main").html();
-    str += "<div class='footer'>" + 
-                "<img src='img/github.png' class='footerImg'> Hosted at <a href='https://github.com/esouthren/WhatsAppExploration' >Github</a></div>"
+    str += "<div class='resultScrollBox' data-aos='" + ANIMATION_STYLE + "'>" +
+                "<div class='resultEntry'>" + 
+                    "<div class='footer'>" + 
+                        "<img src='img/github.png' class='footerImg'> " +
+                        "Hosted at <a href='https://github.com/esouthren/WhatsAppExploration' >Github</a><br /><br /><br />" +
+                    "</div>" +
+                "</div>" + 
+            "</div>";
     $("#main").html(str);
 
 }
