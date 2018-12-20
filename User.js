@@ -46,6 +46,19 @@ class User {
         }
         return max;
     }
+    
+    getQuantityOfCharacter(chr) {
+        var count = 0;
+        this.messages.forEach( function(y) {
+            for (var i = 0; i < y.content.length; ++i) {
+                if(y.content.charAt(i)===chr) {
+                    count++;
+                }
+            }
+            
+        });
+        return count;
+    }
 }
 
 class Message {

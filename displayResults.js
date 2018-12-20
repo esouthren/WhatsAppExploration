@@ -1,3 +1,6 @@
+var COLOR_A_RGB = 'rgba(255,69,0,1)';
+var COLOR_B_RGB = 'rgba(0, 90, 156,1)';
+
 function displayResults(userData) {
     str = '<center>' +
                 '<h1>What\'s in a Conversation?</h1><br /><br />';
@@ -12,6 +15,7 @@ function displayResults(userData) {
     displayAverageMessageLength(userData);
     displayBusiestHour(userData);
     plotMessageTimeOfDay(userData);
+    displayNumberOfQuestions(userData);
 
     
     // most common words
@@ -150,7 +154,25 @@ function displayBusiestHour(userData) {
     appendTextToResults(str);
 }
 
-
+function displayNumberOfQuestions(userData) {
+    var aNum = userData.a.getQuantityOfCharacter('?');
+    var bNum = userData.b.getQuantityOfCharacter('?');
+    var output = userData.a.name + " asks the most questions";
+    if(bNum > aNum) { output = userData.b.name + " asks the most questions"; }
+    if(bNum===aNum) { output = "You ask the same number of questions"}
+    
+    str = "<center><div class='resultEntry'>" +
+                "<div class='resultTitle'>" + output + "</div>" +
+                "<div class='resultContent'>" +
+                    "<b><div class='userA'>" + userData.a.name + "</div></b>" +
+                    "<i> " + aNum + " questions</i>" +
+                    "<br /><br />" +
+                    "<b><div class='userB'>" + userData.b.name + "</div></b>" +
+                    "<i> " +bNum + " questions</i>" +
+                "</div>" +
+            "</div><br /><br /></center>";
+    appendTextToResults(str);
+}
 function plotMessageTimeOfDay(userData) {
     hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var trace1 = {
@@ -158,13 +180,19 @@ function plotMessageTimeOfDay(userData) {
         x: hours,
         type: 'scatter',
         name: userData.a.name,
+        line: {
+            color: COLOR_A_RGB
+        }
     };
 
     var trace2 = {
       y: userData.b.getMessagesByHour(),
       x: hours,
       type: 'scatter',
-        name: userData.b.name,
+      name: userData.b.name,
+      line: {
+      color: COLOR_B_RGB
+        }
     };
 
     var data = [trace1, trace2];
@@ -191,7 +219,7 @@ function plotMessageCount(userData) {
     y: [userData.a.messages.length, userData.b.messages.length],
     type: 'bar',
     marker:{
-        color: ['rgba(255,69,0,1)', 'rgba(0, 90, 156,1)']
+        color: [COLOR_A_RGB, COLOR_B_RGB]
     }
 };
 
