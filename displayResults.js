@@ -13,7 +13,7 @@ function displayResults(userData) {
     displayMessagingDuration(userData);
     displayMessageCount(userData);
     plotMessageCount(userData);
-    //displayAveragePerDay(userData);
+    displayAveragePerDay(userData);
     displayAverageMessageLength(userData);
     displayBusiestHour(userData);
     plotMessageTimeOfDay(userData);
