@@ -93,8 +93,6 @@ class User {
     return second[1] - first[1];
         });
 
-// Create a new array with only the first 5 items
-        console.log(items.slice(0, 5));
         return items;    
     
 }

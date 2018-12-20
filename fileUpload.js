@@ -32,7 +32,6 @@ function loadHomepage() {
 function validateFileInput() {
   var fileToLoad = document.getElementById('fileToLoad').files[0];
   if(typeof fileToLoad == 'undefined') {
-      console.log('Select a .txt file to analyse!');
       displayNoFileSelectedWarning();
   } else {
       readFile(fileToLoad);
@@ -50,7 +49,6 @@ function checkFileExtension() {
 }
 
 function displayAnalyseButton() {
-    console.log("displaying button");
     $('.analyseButtonDiv').html("<div onclick='validateFileInput()' class='analyseButton'>Let\'s Analyse!</div>");
 }
 
@@ -59,7 +57,6 @@ function readFile(file) {
     var fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent) {
       var textFromFileLoaded = fileLoadedEvent.target.result;
-      //console.log(textFromFileLoaded.slice(0,1000));
       var userData = processData(textFromFileLoaded);
         $('#main').html('');
         displayResults(userData); // displayResults.js

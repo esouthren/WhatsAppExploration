@@ -106,7 +106,6 @@ function displayAverageMessageLength(userData) {
 
 function displayBusiestHour(userData) {
     var busiestHour = userData.ab.getBusiestHour();
-    console.log(busiestHour.toString());
     var output = "is between ";
     switch(busiestHour) {
         case 0: output+="midnight and 1am"; break;
@@ -245,7 +244,6 @@ function plotMessageCount(userData) {
         },
     };
     appendPlotToResults('plotNumMessages', data, layout, 60);
-//Plotly.newPlot('test', data, layout, {displaylogo: false});
 }
 
 function appendPlotToResults(divName, data, layoutOptions, width) {
