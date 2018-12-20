@@ -1,9 +1,11 @@
 var COLOR_A_RGB = 'rgba(255,69,0,1)';
 var COLOR_B_RGB = 'rgba(0, 90, 156,1)';
+var ANIMATION_STYLE = 'fade-up'; // css-tricks.com/aos-css-driven-scroll-animation-library/ 
 
 function displayResults(userData) {
-    str = '<center>' +
-                '<br /><br /><br /><br /><h1>What\'s in a Conversation?</h1><br /><br /><br /><br />';
+    str = "<div class='titleScreen'><br /><br /><br /><h1>What\'s in a Conversation?</h1>" +
+                "<br /><br /><h3>scroll to continue</h3>" +
+        "</div>";
     $("#main").html(str);
 
     displayFirstMessage(userData);
@@ -11,7 +13,7 @@ function displayResults(userData) {
     displayMessagingDuration(userData);
     displayMessageCount(userData);
     plotMessageCount(userData);
-    displayAveragePerDay(userData);
+    //displayAveragePerDay(userData);
     displayAverageMessageLength(userData);
     displayBusiestHour(userData);
     plotMessageTimeOfDay(userData);
@@ -248,14 +250,14 @@ function plotMessageCount(userData) {
 
 function appendPlotToResults(divName, data, layoutOptions, width) {
     str = $("#main").html();
-    str += '<div class="resultScrollBox" data-aos="slide-up"><div id="' + divName + '" style="width: ' + width + '%; margin: 0px auto"></div></div><br /><br />'
+    str += '<div class="resultScrollBox" data-aos="' + ANIMATION_STYLE + '"><div id="' + divName + '" style="width: ' + width + '%; margin: 0px auto"></div></div><br /><br />'
     $("#main").html(str);
     Plotly.newPlot(divName, data, layoutOptions);
 }
 
 function appendTextToResults(newStr) {
     str = $("#main").html();
-    str += "<div class='resultScrollBox' data-aos='slide-up'><div class='resultEntry'>";
+    str += "<div class='resultScrollBox' data-aos='" + ANIMATION_STYLE + "'><div class='resultEntry'>";
     str += newStr;
     str += "</div></div><br /><br /><br /><br /><br />";
     $("#main").html(str);
