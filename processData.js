@@ -17,7 +17,8 @@ function processData(rawData) {
     var messages = rawData.split(delimiterPattern);
     // remove empty strings
     var messages = messages.filter(Boolean);
-    
+    // remmove first message (whatsapp info message)
+    messages = messages.slice(1,messages.length);
     
     ab.numberOfMessages = messages.length;
     console.log("messages: " + messages.length);
@@ -37,22 +38,22 @@ function processData(rawData) {
         var messageContent = senderAndMessage[1];
         let message = new Message(messageDate, messageContent);
         
-        if(messageSender===a.name) {
-                a.addMessage(message);
-            }
-            if(messageSender===b.name) {
-                b.addMessage(message);
-            } else {
-                if(a.name==null) { 
-                    a.name = messageSender;
+            if(messageSender===a.name) {
                     a.addMessage(message);
-                } else if ((b.name==null) && (messageSender != a.name)) { 
-                    b.name = messageSender; 
+                }
+                if(messageSender===b.name) {
                     b.addMessage(message);
-                } 
-            }
-        ab.addMessage(message);
-    });
+                } else {
+                    if(a.name==null) { 
+                        a.name = messageSender;
+                        a.addMessage(message);
+                    } else if ((b.name==null) && (messageSender != a.name)) { 
+                        b.name = messageSender; 
+                        b.addMessage(message);
+                    } 
+                }
+            ab.addMessage(message);
+        });
     
     
     userData = { a, b, ab };
