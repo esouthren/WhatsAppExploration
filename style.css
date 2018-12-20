@@ -15,7 +15,7 @@ html, body {
 
 h3 {
     color: gray;
-    font-size: 90%;
+    font-size: 80%;
     margin: 0;
     padding: 0;
     line-height: normal;
@@ -67,8 +67,8 @@ h2 {
 
 .uploadButton {
     border-radius: 0.5em;
-    width: 25%;
-    padding: 1em;
+    width: 100%;
+    padding: 0.5em;
     border 0px;
     font-family: 'Montserrat';
     font-size: 120%;
@@ -77,9 +77,26 @@ h2 {
     margin: 0px auto;
 }
 
+.analyseButton {
+    border-radius: 0.5em;
+    width: 25%;
+    padding: 0.5em;
+    border 0px;
+    font-family: 'Montserrat';
+    font-size: 120%;
+    box-shadow: none;
+    background-color: orangered;
+    margin: 0px auto;
+}
+
 .uploadButton:hover {
     cursor: pointer;
     background-color: steelblue;
+}
+
+.analyseButton:hover {
+    cursor: pointer;
+    background-color: orange;
 }
 
 #warning {
@@ -143,5 +160,19 @@ h2 {
     font-weight: bold;
     font-size: 150%;
     width: 25%;
+}
+
+.fileUploadWrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.fileUploadWrapper input[type=file] {
+  font-size: 2em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 

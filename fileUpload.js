@@ -7,11 +7,13 @@ function loadHomepage() {
         "Email the chat file to yourself"
     ];
     
-    var pageHtmlString = "Select a File to Load: " +
-    "<input type='file' text='blah' id='fileToLoad' onchange='checkFileExtension()'>" + 
-    "<br /><br />" + 
-    "<div onclick='validateFileInput()' class='uploadButton'>Let\'s Analyse!</div>" +
+    var pageHtmlString = "<div class='fileUploadWrapper'>" +
+        "<button class='uploadButton'>Upload a .txt File</button>" +     
+        "<input type='file' id='fileToLoad' onchange='checkFileExtension()' />" +  
+    "</div>" +
+    "<br /><br />" +
     "<div id='warning'></div>" +
+    "<div class='analyseButtonDiv'></div>" +
     "<br /><br /><h2>How do I get a chat file?</h2><br /><br />";
     
     for(var i = 0; i < instructions.length; ++i) {
@@ -42,7 +44,14 @@ function checkFileExtension() {
   var file = document.querySelector('#fileToLoad');
   if ( /\.(txt)$/i.test(file.files[0].name) === false ) { 
       displayWrongExtensionError(); 
+  } else {
+      displayAnalyseButton();
   }
+}
+
+function displayAnalyseButton() {
+    console.log("displaying button");
+    $('.analyseButtonDiv').html("<div onclick='validateFileInput()' class='analyseButton'>Let\'s Analyse!</div>");
 }
 
 function readFile(file) {
