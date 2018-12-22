@@ -19,6 +19,9 @@ function displayResults(userData) {
     plotMessageTimeOfDay(userData);
     displayNumberOfQuestions(userData);
     displayMostCommonWords(userData);
+    displayBusiestMonth(userData);
+    plotMessageMonth(userData);
+    
     displayFooter();
 
     
@@ -28,6 +31,9 @@ function displayResults(userData) {
     // who swears the most
     // messages by time of day
     // messages per day over time
+    
+    // rarest words
+    // largest word used
 }
 
 function displayFirstMessage(userData) {
@@ -185,6 +191,32 @@ function displayMostCommonWords(userData) {
     appendTextToResults(str);
 }
 
+function displayBusiestMonth(userData) {
+    var monthNumber = userData.ab.getBusiestMonth();
+    var monthString = getMonthString(monthNumber[0]);
+    var yearString = getYearString(monthNumber[1]);
+    var count = monthNumber[2];
+    var output = monthString + " " + yearString;
+    var str = "<div class='resultTitle'>You sent the most messages in </div>" +
+                    "<div class='resultContent'>" +
+                    "<b><div class='userALarge'>" + output + "</div></b>" +
+                "</div>";
+    appendTextToResults(str);
+}
+
+function getMonthString(m) {
+    var months = { "0": "January", "1": "February", "2": "March", "3": "April", "4": "May", "5": "June","6": "July","7": "August","8": "September","9": "October","10": "November","11": "December" };
+    if(months[m]) {
+        return months[m];
+    } else {
+        return "error";
+    }
+}
+
+function getYearString(y) {
+    return "20" + y.toString();
+}
+
 function plotMessageTimeOfDay(userData) {
     hours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var trace1 = {
@@ -220,8 +252,6 @@ function plotMessageTimeOfDay(userData) {
     };
     var newDiv = 'plotMessagesByHour';
     appendPlotToResults(newDiv, data, layout, 'largeGraph');
-    //Plotly.newPlot('myDiv', data, layout, {displayModeBar: false});
-
 }
 
 function plotMessageCount(userData) {
@@ -245,6 +275,45 @@ function plotMessageCount(userData) {
         },
     };
     appendPlotToResults('plotNumMessages', data, layout, 'smallGraph');
+}
+
+function plotMessageMonth(userData) {
+    months = userData.ab.getMessagesPerMonth();
+    var dates = []
+    var counts = []
+    Object.keys(months).forEach(function(key) {
+        if(key!=="NaN NaN") {
+            dates.push(key);
+            counts.push(months[key]);
+    }
+    });
+    console.log(dates);
+    console.log(counts);
+    
+    var trace1 = {
+        y: counts,
+        x: dates,
+        type: 'scatter',
+        name: "Messages Per Month",
+        line: {
+            color: COLOR_A_RGB
+        }
+    };
+
+
+    var data = [trace1];
+    var layout = {
+        xaxis: {
+            type: 'category',
+            title: 'Time by Hour'
+        },
+        yaxis: {
+            title: 'Number of Messages'
+        },
+        title: 'Messages Per Month',
+    };
+    var newDiv = 'plotMessagesByMonth';
+    appendPlotToResults(newDiv, data, layout, 'largeGraph');
 }
 
 function appendPlotToResults(divName, data, layoutOptions, graphStyle) {

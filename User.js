@@ -95,7 +95,52 @@ class User {
 
         return items;    
     
-}
+    }
+    
+    getMessagesPerMonth() {
+        var dict = {}
+        // { "mm yy": count}
+        this.messages.forEach( function (m) {
+            var monthYear = m.date.getMonth().toString() + " " + m.date.getYear().toString();
+            if (monthYear in dict) {
+                dict[monthYear] = dict[monthYear]+1;
+            } else {
+                dict[monthYear] = 1;
+            }
+        });
+        return dict;
+    }
+    
+    getMessagesPerMonthSorted() {
+        
+        var dict = this.getMessagesPerMonth;
+       var items = Object.keys(dict).map(function(key) {
+        return [key, dict[key]];
+       });
+
+        // Sort the array based on the second element
+        items.sort(function(first, second) {
+    return first[1] - second[1];
+        });
+
+        return items;    
+    }
+    
+    getBusiestMonth() {
+        var months = this.getMessagesPerMonth();
+        var maxCount = 0;
+        var maxMonth = 0;
+        var maxYear = 0;
+        Object.keys(months).forEach(function(key) {
+            if(months[key] > maxCount) {
+                var s = key.split(" ");
+                maxCount = months[key];
+                maxYear = s[1].slice(1,);
+                maxMonth = s[0];
+            }
+        });
+        return [ maxMonth, maxYear, maxCount ];
+    }
 
         
     
